@@ -153,7 +153,7 @@ local status = {
   ["V-LINE"]  = "very visual line",
   ["V-BLOCK"] = "very visual block",
   ["REPLACE"] = "Thou hit key, ic replace bytes",
-  ["SELECT"]  = "Thou hit key, ic selcet bytes",
+  ["SELECT"]  = "Thou hit key, ic select bytes",
 }
 
 lvim.builtin.lualine.sections.lualine_a = {
