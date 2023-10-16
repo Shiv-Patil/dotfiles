@@ -1,0 +1,7 @@
+#!/bin/sh
+
+if [ "$(pamixer --get-mute)" = "true" ]; then
+	notify-send -e -c progress -t 800 -h "string:wired-tag:volume" -h "int:value:$(pamixer --get-volume)" "Volume" "muted"
+else
+	notify-send -e -c progress -t 800 -h "string:wired-tag:volume" -h "int:value:$(pamixer --get-volume)" "Volume"
+fi

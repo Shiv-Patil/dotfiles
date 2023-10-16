@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+playerctl stop
+i3lock -i ~/Pictures/Wallpapers/1-locked.png && sleep 1

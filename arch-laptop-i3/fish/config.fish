@@ -3,3 +3,6 @@ if status is-interactive
     alias yeet "paru -Rcs"
     alias yey "paru -S"
 end
+
+export EDITOR=nano
+export VISUAL=nano

@@ -18,6 +18,7 @@ shutdown=' Shutdown'
 reboot=' Reboot'
 lock=' Lock'
 suspend='⏾ Suspend'
+hibernate='⏾ Hibernate'
 logout=' Logout'
 yes=' Yes'
 no=' No'
@@ -50,11 +51,7 @@ confirm_exit() {
 
 # Pass variables to rofi dmenu
 run_rofi() {
-	echo -e "$shutdown\n$lock\n$suspend\n$logout\n$reboot" | rofi_cmd
-}
-
-locker() {
-	i3lock -i ~/Pictures/Wallpapers/1-locked.png && sleep 1
+	echo -e "$shutdown\n$lock\n$suspend\n$hibernate\n$logout\n$reboot" | rofi_cmd
 }
 
 # Execute Command
@@ -67,8 +64,12 @@ run_cmd() {
 			systemctl reboot
 		elif [[ $1 == '--suspend' ]]; then
 			pamixer mute
-			locker
-			systemctl suspend
+			custom_locker
+			systemctl suspend-then-hibernate
+		elif [[ $1 == '--hibernate' ]]; then
+			pamixer mute
+			custom_locker
+			systemctl hibernate
 		elif [[ $1 == '--logout' ]]; then
 			i3-msg exit
 		fi
@@ -87,11 +88,14 @@ case ${chosen} in
 		run_cmd --reboot
         ;;
     $lock)
-		locker
+		custom_locker
         ;;
     $suspend)
 		run_cmd --suspend
         ;;
+    $hibernate)
+		run_cmd --hibernate
+	;;
     $logout)
 		run_cmd --logout
         ;;

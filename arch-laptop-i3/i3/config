@@ -11,7 +11,6 @@
 
 set $mod Mod4
 set $alt Mod1
-set $Locker i3lock -i ~/Pictures/Wallpapers/1-locked.png && sleep 1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -31,7 +30,7 @@ exec --no-startup-id dex --autostart --environment i3
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
 # exec --no-startup-id xss-lock --transfer-sleep-lock --i3lock --nofork
-exec --no-startup-id "xautolock -detectsleep -time 10 -locker \"$Locker\""
+exec --no-startup-id "xautolock -detectsleep -corners ---- -time 10 -locker \"custom_locker\""
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -187,8 +186,10 @@ mode "resize" {
 }
 
 # control brightness
-bindsym XF86MonBrightnessUp exec xrandr --output eDP-1 --brightness 0.7
-bindsym XF86MonBrightnessDown exec xrandr --output eDP-1 --brightness 1
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10
+
+# control playback
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
